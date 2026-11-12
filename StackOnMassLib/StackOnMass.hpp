@@ -11,12 +11,12 @@ namespace StackOnMass {
     template <typename T>
     class TStackOnMass {
     private:
-        T* _data;
+        T* _data; //указатель на димнамический массив в пам€ти, где физически хран€тс€ элементы
         size_t _capacity;
-        size_t _top;      //указывает на индекс следующей свободной €чейки
+        size_t _top;      //указывает на индекс следующей свободной €чейки и текущее количество элементов в стеке
 
     public:
-        explicit TStackOnMass(size_t capacity = 10);
+        explicit TStackOnMass(size_t capacity = 10); //explicit вызовет ошибку, если попытаемс€ написать размер через равно
         TStackOnMass(const TStackOnMass& other);
         TStackOnMass& operator=(const TStackOnMass& other);
         ~TStackOnMass();
@@ -24,16 +24,15 @@ namespace StackOnMass {
         void push(const T& val);
         T pop();
         T& top();
-        const T& top() const; //read-only доступ
+        const T& top() const; //read-only доступ дл€ случаем, когда происходит вызов неизмен€емого стека (чтобы не было ошибки)
 
         inline bool is_empty() const noexcept;
         inline bool is_full() const noexcept;
     };
 
-
     template <typename T>
     TStackOnMass<T>::TStackOnMass(size_t capacity)
-        : _capacity(capacity), _top(0) {
+        : _capacity(capacity), _top(0) { //_capacity = capacity;
         if (capacity == 0) {
             throw std::invalid_argument("Stack capacity must be > 0");
         }
