@@ -1,3 +1,3 @@
 create_project_lib(EasyExample)
 
-target_link_libraries(EasyExample StackOnMassLib)
+target_link_libraries(EasyExample)
